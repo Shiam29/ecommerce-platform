@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { supabase } from "../../supabase";
 import { Card, Image, Text, Badge, Button, Group } from "@mantine/core";
 
 const Home = () => {
+  const navigate = useNavigate();
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -24,7 +26,12 @@ const Home = () => {
       console.error("Error fetching products:", error);
     }
   }
-  
+
+  const handleClick = (id) => {
+    // Navigate to /:id
+    navigate(`/${id}`);
+  };
+
   return (
     <div className="container">
       <div className="product-row">
@@ -37,6 +44,8 @@ const Home = () => {
             radius="md"
             withBorder
             className="product-card"
+            style={{ cursor: "pointer" }}
+            onClick={() => handleClick(product.id)}
           >
             <Card.Section>
               <Image
@@ -49,7 +58,7 @@ const Home = () => {
 
             <Group position="apart" mt="md" mb="xs">
               <Text weight={500}>{product.name}</Text>
-              <Badge color="green" variant="light">
+              <Badge color="green" variant="light" size="xl">
                 ${product.price}.00
               </Badge>
             </Group>
