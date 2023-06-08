@@ -1,40 +1,37 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { MantineProvider } from "@mantine/core";
-import { AppShell, Header } from "@mantine/core";
-import { ActionIcon } from '@mantine/core';
-import { IconShoppingCart } from '@tabler/icons-react';
-import Home from "./components/pages/Home";
-import Product from "./components/pages/Product";
-import CreateProductPage from "./components/pages/CreateProductPage";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { AppShell, MantineProvider } from "@mantine/core";
+import Home from "./pages/Home";
+import Product from "./pages/Product";
+import CreateProductPage from "./pages/CreateProductPage";
+import { AuthProvider } from "./contexts/AuthProvider";
+import AppHeader from "./components/AppHeader";
+import Login from "./pages/Login";
+import MyProducts from "./pages/MyProducts";
+import EditProductPage from "./pages/EditProductPage";
+import { CartProvider } from "./contexts/CartProvider";
+import CartPage from "./pages/CartPage";
 
 function App() {
   return (
-    <div>
-      <MantineProvider withGlobalStyles withNormalizeCSS>
-        <AppShell
-          padding="md"
-          header={
-            <Header display="flex" style={{ justifyContent: "space-between" }} height={60} p="md">
-              <h3 style={{ marginTop: -1 }}>E-commerce Platform</h3>
-              <ActionIcon color="violet" variant="light">
-                <IconShoppingCart size="1.125rem" />
-              </ActionIcon>
-            </Header>
-          }
-        >
-          {
-            <BrowserRouter>
+    <AuthProvider>
+      <BrowserRouter>
+        <MantineProvider withGlobalStyles withNormalizeCSS>
+          <CartProvider>
+            <AppShell padding="md" header={<AppHeader />}>
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/:id" element={<Product />} />
+                <Route path="/cart" element={<CartPage />} />
+                <Route path="/my-products" element={<MyProducts />} />
+                <Route path="/my-products/:id" element={<EditProductPage />} />
                 <Route path="/create" element={<CreateProductPage />} />
+                <Route path="/login" element={<Login />} />
               </Routes>
-            </BrowserRouter>
-          }
-        </AppShell>
-      </MantineProvider>
-    </div>
+            </AppShell>
+          </CartProvider>
+        </MantineProvider>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
-
 export default App;

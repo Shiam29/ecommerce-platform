@@ -7,6 +7,8 @@
     "@mantine/core": "^6.0.13",
     "@mantine/form": "^6.0.13",
     "@mantine/hooks": "^6.0.13",
+    "@supabase/auth-ui-react": "^0.4.2",
+    "@supabase/auth-ui-shared": "^0.1.6",
     "@supabase/supabase-js": "^2.24.0",
     "@tabler/icons-react": "^2.21.0",
     "@testing-library/jest-dom": "^5.16.5",

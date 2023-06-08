@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { supabase } from "../../supabase";
+import { supabase } from "../supabase";
 import { Card, Image, Text, Badge, Button, Group } from "@mantine/core";
+import { useCart } from "../contexts/CartProvider";
+import AddToCartButton from "../components/AddToCartButton";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -15,7 +17,7 @@ const Home = () => {
     try {
       const { data: products, error } = await supabase
         .from("products")
-        .select("*");
+        .select();
 
       if (error) {
         console.error("Error fetching products:", error);
@@ -78,15 +80,7 @@ const Home = () => {
               {product.description}
             </Text>
 
-            <Button
-              variant="light"
-              color="blue"
-              fullWidth
-              mt="auto"
-              radius="md"
-            >
-              Add to cart
-            </Button>
+            <AddToCartButton id={product.id} />
           </Card>
         ))}
       </div>

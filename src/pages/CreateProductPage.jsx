@@ -1,12 +1,20 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Box, TextInput, Textarea, NumberInput, Button } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { IconCurrencyDollar, IconPlus } from "@tabler/icons-react";
-import { supabase } from "../../supabase";
+import { supabase } from "../supabase";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthProvider";
 
 const CreateProductPage = () => {
   const navigate = useNavigate()
+  const { user, loading } = useAuth();
+  
+  // Redirect user to login if not logged in
+  useEffect(() => {
+    if (!user && !loading) navigate('/login')
+  }, [user])
+
   const form = useForm({
     initialValues: {
       name: "",
@@ -22,16 +30,18 @@ const CreateProductPage = () => {
   });
 
   const handleSubmit = async (values) => {
-    console.log(values);
+    if (!user) return alert("Please sign in to create product")
+
     const { error } = await supabase
       .from("products")
       .insert({ 
         name: values.name, 
         description: values.description,
         price: values.price, 
-        image_url: values.image_url
+        image_url: values.image_url,
+        user_id: user.id
     });
-    console.log(error);
+
     if (error) return alert("Error occurred")
     return navigate("/");
   };
