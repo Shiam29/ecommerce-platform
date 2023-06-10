@@ -41,10 +41,9 @@ const Home = () => {
           <Card
             key={product.id}
             maw={300}
-            shadow="sm"
+            shadow="xl"
             padding="lg"
             radius="md"
-            withBorder
             className="product-card"
             style={{ cursor: "pointer" }}
             onClick={() => handleClick(product.id)}

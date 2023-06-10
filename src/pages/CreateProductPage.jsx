@@ -24,8 +24,8 @@ const CreateProductPage = () => {
     },
 
     validate: {
-      name: (value) => value.length === 0,
-      price: (value) => value <= 0,
+      name: (value) => value.length === 0 ? "Please enter a name" : null,
+      price: (value) => value <= 0 ? "Price must be greater than 0" : null,
     },
   });
 

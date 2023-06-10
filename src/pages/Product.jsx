@@ -68,9 +68,10 @@ const Product = () => {
           src={product.image_url}
           height={260}
           alt={product.name}
-          radius="sm"
-          shadow="sm"
+          shadow="xl"
+          radius="md"
         />
+
         <div style={{ flex: 1, padding: 32 }}>
           <h1>{product?.name}</h1>
 
@@ -86,7 +87,9 @@ const Product = () => {
         </div>
       </Box>
       <Footer p="xl" display="flex" style={{ justifyContent: "flex-end" }}>
-        <AddToCartButton id={product.id} />
+        <div>
+          <AddToCartButton id={product.id} />
+        </div>
       </Footer>
     </>
   );

@@ -17,7 +17,7 @@ function App() {
       <BrowserRouter>
         <MantineProvider withGlobalStyles withNormalizeCSS>
           <CartProvider>
-            <AppShell padding="md" header={<AppHeader />}>
+            <AppShell padding="md" header={<AppHeader />} bg={"#f5f5f5"}>
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/:id" element={<Product />} />

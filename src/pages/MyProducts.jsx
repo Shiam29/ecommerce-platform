@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "../supabase";
 import { Card, Image, Text, Badge, Button, Group } from "@mantine/core";
 import { useAuth } from "../contexts/AuthProvider";
+import { IconPlus } from "@tabler/icons-react";
 
 const MyProducts = () => {
   const navigate = useNavigate();
@@ -54,8 +55,17 @@ const MyProducts = () => {
   return (
     <div className="container">
       <h1>My Products</h1>
-      <br/>
+      <br />
       <div className="product-row">
+        {products.length === 0 && (
+          <div>
+            <p>No products yet!</p>
+
+            <Link to="/create">
+              <Button leftIcon={<IconPlus />}>Create Product</Button>
+            </Link>
+          </div>
+        )}
         {products.map((product) => (
           <Card
             key={product.id}
