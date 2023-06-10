@@ -16,7 +16,7 @@ const CartPage = () => {
       street: "",
       suburb: "",
       state: "",
-      country: "",
+      country: "Australia",
       cardholderName: "",
       cardNumber: "",
       expiry: "",
@@ -28,9 +28,9 @@ const CartPage = () => {
       suburb: (value) => value.length === 0 ? "Please enter a suburb" : null,
       state: (value) => value.length === 0 ? "Please enter a state or territory" : null,
       cardholderName: (value) => value.length === 0 ? "Please enter a cardholdername" : null,
-      cardNumber: (value) => value.length === 16 ? "Please enter the card number" : null,
-      expiry: (value) => value.length === 0 ? "Please enter the expiry date" : null,
-      cvc: (value) => value.length === 0 ? "Please enter the cvc" : null,
+      cardNumber: (value) => value.length !== 16 ? "Invalid card number" : null,
+      expiry: (value) => value.length !== 5 ? "Invalid expiry date" : null,
+      cvc: (value) => value.length !== 3 ? "Invalid cvc" : null,
     },
   });
   
@@ -95,7 +95,7 @@ const CartPage = () => {
           <TextInput label="Street" style={{ flex: 1 }} {...form.getInputProps("street")}/>
 
           <div style={{ display: "flex", gap: 16, marginTop: 8 }}>
-            <TextInput label="Suburb" style={{ flex: 0.7 }} />
+            <TextInput label="Suburb" style={{ flex: 0.7 }}{...form.getInputProps("suburb")} />
 
             <Select
               withinPortal
@@ -124,7 +124,7 @@ const CartPage = () => {
 
           <p style={{ marginTop: 0 }}>Payment</p>
 
-          <TextInput label="Cardholder name" />
+          <TextInput label="Cardholder name" {...form.getInputProps("cardholderName")} />
           <TextInput
             type="number"
             label="Card number"
@@ -134,8 +134,9 @@ const CartPage = () => {
             <TextInput
               label="Expiry"
               style={{ flex: 1 }}
+              {...form.getInputProps("expiry")}
             />
-            <TextInput label="CVC" style={{ flex: 1 }} />
+            <TextInput label="CVC" style={{ flex: 1 }} {...form.getInputProps("cvc")}/>
           </div>
         </Card>
       </div>

@@ -1,70 +1,43 @@
-# Getting Started with Create React App
+# E-Commerce Platform: ECOMZ
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### An embedded screenshot of the app
+![Screenshot](https://ojrecgvwozpmhtbesver.supabase.co/storage/v1/object/public/public/Screenshot%202023-06-10%20at%201.45.46%20pm.png)
 
-## Available Scripts
+### Explanations of the technologies used
+React.js: JavaScript library for building user interfaces.
+Supabase: Open-source Supabase alternative for database and authentication.
+Mantine: A customizable React component and hooks library
 
-In the project directory, you can run:
+### A couple paragraphs about the general approach you took
+My aim was to create a responsive and user-friendly e-commerce platform using modern web technologies. The frontend was built with React.js. Supabase was chosen as the backend solution to handle the database and user authentication. The steps I took were:
 
-### `npm start`
+- **Design the user interface:** I designed an intuitive user interface using Mantine components. They have built in responsive designs to handle good experience across different devices.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Implement user authentication:** I integrated Supabase's authentication system to handle user login and signup functionality. I used the Supabase Auth JavaScript library to manage user authentication state and provide secure access to protected routes within the app.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Connect to Supabase backend:** I used Supabase to store and retrieve product data. I set up the database tables and schema to store product information and cart details. I used the Supabase JavaScript library to interact with the database, fetching products for display on the home screen and storing user-specific data like product lists and cart items.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **Implement CRUD operations:** I then implemented CRUD (Create, Read, Update, Delete) operations on products and cart items. I built react components and backend API functions that allow users to add, edit, and delete products. I then added functionalities to add and remove items from the cart, updating the database accordingly.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **Build cart and checkout functionality:** I then setup the cart view, where users can see the products they've added, along with their prices. I used React context to manage the cart data across components. I then implemented the checkout process, including delivery and payment information.
 
-### `npm run eject`
+### Complete installation and set up instructions for running your app locally
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```
+git clone <repository_url>
+npm install
+npm run start
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Link to your user stories – who are your users, what do they want, and why?
+- https://docs.google.com/document/d/1jk_RDx3eN98-sGYS-pNtPkNOjS3hpwAjIoOdppWAa-0/edit
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Link to or embed your wireframes – sketches of major views / interfaces in your application
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Descriptions of any unsolved problems or major hurdles you had to overcome
+- Cart - Had to use contexts to make the cart usable from every component.
+- Checkout process doesn’t change anything on the backend. Need to set up product quantity and order processing.

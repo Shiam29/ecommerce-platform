@@ -17,6 +17,7 @@ import { useAuth } from "../contexts/AuthProvider";
 import { supabase } from "../supabase";
 import CreateProductPage from "../pages/CreateProductPage";
 import { useCart } from "../contexts/CartProvider";
+import logoSrc from "../res/Logo.png";
 
 const AppHeader = () => {
   const { user } = useAuth();
@@ -34,7 +35,7 @@ const AppHeader = () => {
       p="md"
     >
       <Link to="/">
-        <h3 style={{ marginTop: -1 }}>E-commerce Platform</h3>
+        <img style={{ height: "100%" }} src={logoSrc}/>
       </Link>
 
       <div style={{ display: "flex", gap: 16, alignItems: "center" }}>
